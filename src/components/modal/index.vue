@@ -8,7 +8,7 @@
       <button @click="confirm" v-if="showConfirmButton">{{confirmButtonText}}</button>
     </div>
   </div>
-  <div class="mask"></div>
+  <div class="mask" v-if="overlay" @click="overlayClick"></div>
 </div>
 </template>
 
@@ -21,6 +21,8 @@ export default {
     confirmButtonText: String,
     showConfirmButton: Boolean,
     showCancelButton: Boolean,
+    overlay: Boolean,
+    closeOnClickOverlay: Boolean,
   },
   methods: {
     close() {
@@ -30,6 +32,12 @@ export default {
     confirm() {
       this.resolve();
       this.$emit('close');
+    },
+    overlayClick() {
+      if (this.closeOnClickOverlay) {
+        this.reject();
+        this.$emit('close');
+      }
     }
   }
 }
@@ -65,6 +73,10 @@ export default {
 }
 .modal-footer > button {
   margin-right: 12px;
+}
+.close-btn {
+  top: 12px;
+  right: 12px;
 }
 .mask {
   position: fixed;

@@ -12,7 +12,7 @@ const defaultOptions = {
   // 显示遮罩层
   overlay: true,
   // 遮罩层关闭
-  closeOnClickOverlay: true,
+  closeOnClickOverlay: false,
   // 取消按钮文案
   cancelButtonText: '取消',
   // 是否展示左边按钮
